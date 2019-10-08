@@ -3,26 +3,41 @@
 <head>
     <title>Getting Started: Handling Form Submission</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/formStyle.css}">
 </head>
 <body>
-<h1>Form</h1>
-<form action="#" th:action="@{/add}" th:object="${user}" method="post">
-    <p>First name: <input type="text" th:field="*{firstname}" /> </p>
-    <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="text-danger"></span>
-    <p>Last name: <input type="text" th:field="*{lastname}" /></p>
-    <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="text-danger"></span>
-    <p>E-mail: <input type="text" th:field="*{email}" /></p>
-    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
-    <b>Gender: </b><br>
-    <input type="radio" th:field="*{gender}" name="gender" value="male" checked> Male<br>
-    <input type="radio" th:field="*{gender}" name="gender" value="female"> Female<br>
-    <select name="education">
-        <option th:field="*{education}" value="none"></option>
-        <option th:field="*{education}" value="bachelor">Bachelor's degree </option>
-        <option th:field="*{education}" value="master">Master's degree </option>
-        <option th:field="*{education}" value="doctoral">Doctoral degree </option>
-    </select><br>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-</form>
+<div>
+    <form action="#" th:action="@{/add}" th:object="${user}" method="post">
+        <label for="fname">First Name</label>
+            <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="text-danger"></span>
+            <input type="text" id="fname" th:field="*{firstname}" placeholder="Your first name"/>
+
+        <label for="lname">Last Name</label>
+            <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="text-danger"></span>
+            <input type="text" id="lname" th:field="*{lastname}" placeholder="Your last name"/>
+
+        <label for="email">E-mail</label>
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+            <input type="text" id="email" th:field="*{email}"/>
+
+        <br>
+        <input type="radio" id="male" th:field="*{gender}" name="gender" value="male" checked>
+        <label for="male">Male</label>
+
+        <input type="radio" id="female" th:field="*{gender}" name="gender" value="female">
+        <label for="female">Female</label>
+        <br><br>
+
+        <label for="education">Education</label>
+        <select name="education" id="education">
+            <option th:field="*{education}" value="none"></option>
+            <option th:field="*{education}" value="bachelor">Bachelor's degree</option>
+            <option th:field="*{education}" value="master">Master's degree</option>
+            <option th:field="*{education}" value="doctoral">Doctoral degree</option>
+        </select>
+
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    </form>
+</div>
 </body>
 </html>
