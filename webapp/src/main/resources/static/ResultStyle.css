@@ -1,0 +1,17 @@
+#user {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+}
+
+#user td, #user th  {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#user th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #4CAF50;
+    color: white;
+}

@@ -18,7 +18,7 @@ public class UserController {
     public UserController(Repository repository) {
         this.repository = repository;
     }
-//https://stackoverflow.com/questions/32801008/how-to-find-out-if-an-email-already-exist-with-jpa-spring-and-sending-some-error
+
     @GetMapping("/form")
     public String showForm(User user) {
         return "save";
@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public String addStudent(@Valid User user, BindingResult result, Model model) {
+    public String addStudent(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
             return "save";
         }
@@ -42,15 +42,6 @@ public class UserController {
         }
 
         repository.save(user);
-        return "redirect:list";
+        return "result";
     }
-
-//    @PostMapping("/user")
-//    public String showUsersData(@ModelAttribute User user) {
-//        return "result";
-//    }
-    // https://www.javaguides.net/2019/04/spring-boot-thymeleaf-crud-example-tutorial.html
-    // https://technology.amis.nl/2019/02/26/building-a-restful-web-service-with-spring-boot-using-an-h2-in-memory-database-and-also-an-external-mysql-database/
-    // https://spring.io/guides/gs/handling-form-submission/
-
 }
