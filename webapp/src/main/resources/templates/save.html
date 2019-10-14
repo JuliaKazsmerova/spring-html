@@ -9,15 +9,15 @@
 <div>
     <form action="#" th:action="@{/add}" th:object="${user}" method="post">
         <label for="fname">First Name</label>
-            <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="text-danger"></span>
+            <span id="fnameerror" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="text-danger"></span>
             <input type="text" id="fname" th:field="*{firstname}" placeholder="Your first name"/>
 
         <label for="lname">Last Name</label>
-            <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="text-danger"></span>
+            <span id="lnameerror" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="text-danger"></span>
             <input type="text" id="lname" th:field="*{lastname}" placeholder="Your last name"/>
 
         <label for="email">E-mail</label>
-            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+            <span id="emailerror" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
             <input type="text" id="email" th:field="*{email}"/>
 
         <br>
@@ -36,7 +36,7 @@
             <option th:field="*{education}" value="doctoral">Doctoral degree</option>
         </select>
 
-        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+        <p><input type="submit" value="Submit" id="submit"/> <input type="reset" value="Reset" id="reset"/></p>
     </form>
 </div>
 </body>
