@@ -21,7 +21,7 @@ public class UserController {
 
     @GetMapping("/form")
     public String showForm(User user) {
-        return "save";
+        return "form";
     }
 
     @GetMapping("/list")
@@ -33,12 +33,12 @@ public class UserController {
     @PostMapping("/add")
     public String addStudent(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
-            return "save";
+            return "form";
         }
 
         if(repository.findUserByEmail(user.getEmail()) != null) {
             result.rejectValue("email", "error.exist", "Email already exists");
-            return "save";
+            return "form";
         }
 
         repository.save(user);

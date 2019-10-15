@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.testng.Assert.assertTrue;
 
-public class SeleniumTests {
+public class SeleniumTestsForFirefox {
 
     private WebDriver driver;
     private final String fname = "Janko";
@@ -40,20 +40,26 @@ public class SeleniumTests {
 
     @Test
     public void emptyFirstNameError() {
-        emptyFieldError("lname", "email",
-                lname, email, "fnameerror", "first");
+        String message = emptyFieldError("lname", "email",
+                lname, email, "fnameerror");
+
+        assertTrue(message.contains("first"));
     }
 
     @Test
-    public void emtyLastNameError() {
-        emptyFieldError("fname", "email",
-                fname, email, "lnameerror", "last");
+    public void emptyLastNameError() {
+        String message = emptyFieldError("fname", "email",
+                fname, email, "lnameerror");
+
+        assertTrue(message.contains("last"));
     }
 
     @Test
     public void emptyEmailError() {
-        emptyFieldError("fname", "lname",
-                fname, lname, "emailerror", "email");
+        String message = emptyFieldError("fname", "lname",
+                fname, lname, "emailerror");
+
+        assertTrue(message.contains("email"));
     }
 
     @Test
@@ -75,8 +81,8 @@ public class SeleniumTests {
         driver.findElement(By.id("submit")).submit();
     }
 
-    private void emptyFieldError(String elementName1, String elementName2,
-                                 String value1, String value2, String missingElementName, String errorWord) {
+    private String emptyFieldError(String elementName1, String elementName2,
+                                 String value1, String value2, String missingElementName) {
 
         driver.get("http://localhost:8080/form");
         driver.findElement(By.id(elementName1)).sendKeys(value1);
@@ -85,7 +91,6 @@ public class SeleniumTests {
 
         WebDriverWait wait = new WebDriverWait(driver, 3);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id(missingElementName)));
-        String message = driver.findElement(By.id(missingElementName)).getText();
-        assertTrue(message.contains(errorWord));
+        return driver.findElement(By.id(missingElementName)).getText();
     }
 }
